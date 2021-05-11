@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "cd ../ && sh start.sh"
+    image: server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      FT_ID: 4fcbff5a0acf92ec37fa69e7389e2af6ee28ffecf85f39cb940e417c0bb9c1df
+      FT_SECRET: cf20a990f4cb7cf489592f0680a6de1c158532b5f1e2a1fcf81c018f6f88fdb2
+    deploy:
+        restart_policy:
+            condition: on-failure
