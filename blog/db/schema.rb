@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_165558) do
+ActiveRecord::Schema.define(version: 2021_05_12_143416) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user' for column 'login'
